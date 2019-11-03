@@ -32,13 +32,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**\*.WebApi.zip'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    flattenFolders: true
-
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
@@ -69,3 +62,16 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**\*.WebApi.zip'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**\*.Web.zip'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
